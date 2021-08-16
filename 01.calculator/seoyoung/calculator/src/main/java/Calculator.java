@@ -2,6 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class Calculator {
+    public static final Character ADD = '+';
+    public static final Character SUBTRACT = '-';
+    public static final Character MULTIPLY = '*';
+    public static final Character DIVIDE = '/';
+
     private static BufferedReader br;
     private static StringTokenizer st;
     private static int result, operand;
@@ -18,24 +23,27 @@ public class Calculator {
         if (st.hasMoreTokens())
             result = stringToInteger(st.nextToken()); // 첫번째 수 받기
 
-        while(st.hasMoreTokens()) {
+        while (st.hasMoreTokens()) {
 
             operator = stringToChar(st.nextToken());
 
             if (st.hasMoreTokens())
                 operand = stringToInteger(st.nextToken());
 
-            if (operator == '+')
+            if (operator == ADD)
                 result = add(result, operand);
 
-            if (operator == '-')
+            if (operator == SUBTRACT)
                 result = subtract(result, operand);
 
-            if (operator == '*')
+            if (operator == MULTIPLY)
                 result = multiply(result, operand);
 
-            if (operator == '/')
+            if (operator == DIVIDE)
                 result = divide(result, operand);
+
+            if (operator != ADD || operator != SUBTRACT || operator != MULTIPLY || operator != DIVIDE)
+                throw new IllegalArgumentException("사칙연산 문자가 아닙니다");
         }
 
         System.out.println(result);

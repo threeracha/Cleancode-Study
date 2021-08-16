@@ -12,17 +12,20 @@ class CalculatorTest {
 
     @Test
     void testStringToInteger() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            calculator.stringToInteger("+");
-        });
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> {
+                    calculator.stringToInteger("+");
+                }
+        ).withMessageMatching("숫자가 아닙니다.");
     }
 
     @Test
     void testStringToChar() {
-        // TODO: 사칙연산
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-
-        });
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
+                () -> {
+                    calculator.stringToChar("");
+                }
+        ).withMessageMatching("문자열이 비어있습니다.");
     }
 
     @Test
