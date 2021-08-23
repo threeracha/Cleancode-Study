@@ -51,10 +51,16 @@ class Calculator(
     }
 }
 
-fun main(args: Array<String>) {
+private fun getExpressionFromUser(): String {
     val bufferedReader = BufferedReader(InputStreamReader(System.`in`))
+    val expression = bufferedReader.readLine()
+    bufferedReader.close()
+    return expression
+}
+
+fun main(args: Array<String>) {
     val bufferedWriter = BufferedWriter(OutputStreamWriter(System.`out`))
-    val calculator = Calculator(bufferedReader.readLine())
+    val calculator = Calculator(getExpressionFromUser())
     val token = StringTokenizer(calculator.expression, " ")
 
     calculator.result = token.nextToken().toInt()
@@ -65,6 +71,5 @@ fun main(args: Array<String>) {
     }
 
     bufferedWriter.write(calculator.result.toString())
-    bufferedReader.close()
     bufferedWriter.close()
 }
